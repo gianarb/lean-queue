@@ -1,0 +1,25 @@
+# LeanQueue
+lean queue system, receive and send messages in different service.
+
+Now support `ArrayAdapter` for testing and `AwsSqs`
+
+```php
+<?php
+
+$client = \Aws\Sqs\SqsClient::factory();
+
+$queue = new \GianArb\LeanQueue\Queue("https://sqs.eu-west-1.amazonaws.com/xxxxxx/test-php");
+$queue->setAdapter(new \GianArb\LeanQueue\Adapter\AwsAdapter($client));
+$queue->send("{'example': '2121'}");
+```
+
+## Install
+```bash
+php composer.phar require "gianarb\lean-queue"
+```
+
+## Contribution
+Try it, you send my your feedback and help me with PRs.
+```shell
+vendor/bin/phpspec run
+```
