@@ -1,8 +1,21 @@
 <?php
 namespace GianArb\LeanQueue\Adapter;
 
+use GianArb\LeanQueue\QueueInterface;
+
 interface AdapterInterface
 {
-    public function sendMessage($message);
-    public function receiveMessage();
+    /**
+     * Send message
+     * @param string $message
+     * @param string $queueName
+     * @return boolean
+     */
+    public function send($queueName, $message);
+
+    /**
+     * Receive one message from queue
+     * @return list
+     */
+    public function receive($queueName);
 }

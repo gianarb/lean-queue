@@ -7,14 +7,14 @@ use Prophecy\Argument;
 
 class QueueSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    function let()
     {
-        $this->shouldHaveType('GianArb\LeanQueue\Queue');
+        $this->beConstructedWith("queue-name");
     }
 
-    function it_implements_queue_interface()
+    function it_is_initializable()
     {
-        $this->shouldHaveType('GianArb\LeanQueue\QueueInterface');
+        $this->shouldImplement('GianArb\LeanQueue\Queue');
     }
 
     function it_get_adapter(\GianArb\LeanQueue\Adapter\AdapterInterface $adapter)
@@ -23,13 +23,19 @@ class QueueSpec extends ObjectBehavior
         $this->getAdapter()->shouldReturn($adapter);
     }
 
-    function it_calls_sendMessage_from_adapter(\GianArb\LeanQueue\Adapter\AdapterInterface $adapter)
+    function it_calls_send_from_adapter(\GianArb\LeanQueue\Adapter\AdapterInterface $adapter)
     {
-        $messageObject = new \GianArb\LeanQueue\Message();
-        $messageObject->setContent("string");
+        $adapter->send("queue-name", "{}")->shouldBeCalled();
 
-        $adapter->sendMessage($messageObject)->shouldBeCalled();
         $this->setAdapter($adapter);
-        $this->sendMessage("string");
+        $this->send("{}");
+    }
+
+    function it_calls_receive_from_adapter(\GianArb\LeanQueue\Adapter\AdapterInterface $adapter)
+    {
+        $adapter->receive("queue-name")->shouldBeCalled();
+
+        $this->setAdapter($adapter);
+        $this->receive();
     }
 }
