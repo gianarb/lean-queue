@@ -18,4 +18,10 @@ interface AdapterInterface
      * @return list
      */
     public function receive($queueName);
+
+    /**
+     * Delete Message
+     * @return
+     */
+    public function deleteMessage($recepit, $queueName);
 }

@@ -61,4 +61,15 @@ class AwsAdapterSpec extends ObjectBehavior
         $this->receive("queue")->shouldBeArray([$responseMock["Messages"][0]["ReceiptHandle"], $responseMock["Messages"][0]["Body"]]);
     }
 
+    function it_deleteMessage_and_return_true_how_success(\Aws\Sqs\SqsClient $client)
+    {
+        $responseMock = unserialize(file_get_contents(__DIR__."/../../../../resources/deleteMessage"));
+        $client->deleteMessage([
+            "QueueUrl" => "queue",
+            "ReceiptHandle" => "sehrh"
+        ])->willReturn($responseMock);
+
+        $this->deleteMessage("sehrh", "queue")->shouldBe(true);
+    }
+
 }

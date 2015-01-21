@@ -21,6 +21,10 @@ class ArrayAdapter implements AdapterInterface
         return $d['id'];
     }
 
+    public function deleteMessage($receipt)
+    {
+    }
+
     public function receive($queue)
     {
         if (!array_key_exists($queue, $this->data)) {

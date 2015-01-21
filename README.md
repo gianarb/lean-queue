@@ -12,6 +12,15 @@ $queue = new \GianArb\LeanQueue\Queue("https://sqs.eu-west-1.amazonaws.com/xxxxx
 $queue->setAdapter(new \GianArb\LeanQueue\Adapter\AwsAdapter($client));
 $queue->send("{'example': '2121'}");
 ```
+## Receive and Delete message
+```php
+<?php
+$queue = new \GianArb\LeanQueue\Queue("https://sqs.eu-west-1.amazonaws.com/xxxxx/test-php");
+$queue->setAdapter(new \GianArb\LeanQueue\Adapter\AwsAdapter($client));
+list($message, $receipt) = $queue->receive();
+
+$queue->deleteMessage($receipt);
+```
 
 ## Install
 ```bash
