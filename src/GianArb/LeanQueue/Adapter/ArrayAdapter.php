@@ -21,7 +21,7 @@ class ArrayAdapter implements AdapterInterface
         return $d['id'];
     }
 
-    public function deleteMessage($receipt)
+    public function deleteMessage($receipt, $queue)
     {
     }
 
