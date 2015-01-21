@@ -1,4 +1,9 @@
 # LeanQueue
+Master:
+[![Build Status](https://travis-ci.org/gianarb/lean-queue.svg?branch=master)](https://travis-ci.org/gianarb/lean-queue)
+Develop:
+[![Build Status](https://travis-ci.org/gianarb/lean-queue.svg?branch=develop)](https://travis-ci.org/gianarb/lean-queue)
+
 lean queue system, receive and send messages in different service.
 
 Now support `ArrayAdapter` for testing and `AwsSqs`
