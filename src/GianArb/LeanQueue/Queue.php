@@ -2,7 +2,7 @@
 
 namespace GianArb\LeanQueue;
 
-class Queue implements QueueInterface
+class Queue
 {
     /**
      * @var string
@@ -14,10 +14,10 @@ class Queue implements QueueInterface
      */
     private $adapter;
 
-    /**
-     * @var MessageInterface
-     */
-    private $messageObject;
+    public function __construct($queueName)
+    {
+        $this->setName($queueName);
+    }
 
     public function getName()
     {
@@ -41,30 +41,19 @@ class Queue implements QueueInterface
         return $this;
     }
 
-    public function getMessageObject()
+    public function send($message)
     {
-        if(!$this->messageObject){
-            $this->messageObject = new Message();
-        }
-        return $this->messageObject;
+        return $this->getAdapter()->send($this->getName(), $message);
     }
 
-    public function setMessageObject(MessageInterface $messageObject)
+    public function receive()
     {
-        $this->messageObject = $messageObject;
+        return $this->getAdapter()->receive($this->getName());
     }
 
-    public function sendMessage($message)
+    public function deleteMessage($receipt)
     {
-        if(is_string($message)){
-            $messageObj = $this->getMessageObject();
-            $messageObj->setContent($message);
-        }
-        return $this->getAdapter()->sendMessage($messageObj);
+        return $this->getAdapter()->deleteMessage($receipt, $this->getName());
     }
 
-    public function receiveMessage()
-    {
-        return $this->getAdapter()->receiveMessage();
-    }
 }
