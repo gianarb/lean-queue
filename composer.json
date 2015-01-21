@@ -1,0 +1,25 @@
+{
+    "name": "gianarb/lean-queue",
+    "desciption": "Lean queue syste.. Only send, receive and more easy adapters",
+    "require": {
+        "doctrine/mongodb-odm": "~1.0@dev",
+        "aws/aws-sdk-php": "~2.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6",
+        "phpspec/phpspec": "~2.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "GianArb\\LeanQueue\\": "./src"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gianluca Arbezzano",
+            "email": "gianarb92@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
