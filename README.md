@@ -4,9 +4,11 @@ Master:
 Develop:
 [![Build Status](https://travis-ci.org/gianarb/lean-queue.svg?branch=develop)](https://travis-ci.org/gianarb/lean-queue)
 
-lean queue system, receive and send messages in different service.
+lean queue system, receive and send messages for different queue adapters.
 
-Now support `ArrayAdapter` for testing and `AwsSqs`
+For now supports `ArrayAdapter` and `AwsSqs`
+
+## Send messages in queue
 
 ```php
 <?php
@@ -15,25 +17,31 @@ $client = \Aws\Sqs\SqsClient::factory();
 
 $queue = new \GianArb\LeanQueue\Queue("https://sqs.eu-west-1.amazonaws.com/xxxxxx/test-php");
 $queue->setAdapter(new \GianArb\LeanQueue\Adapter\AwsAdapter($client));
+
 $queue->send("{'example': '2121'}");
 ```
-## Receive and Delete message
+
+## Receive and Delete messages
+
 ```php
 <?php
 $queue = new \GianArb\LeanQueue\Queue("https://sqs.eu-west-1.amazonaws.com/xxxxx/test-php");
 $queue->setAdapter(new \GianArb\LeanQueue\Adapter\AwsAdapter($client));
+
 list($receipt, $message) = $queue->receive();
 
-$queue->deleteMessage($receipt);
+$queue->delete($receipt);
 ```
 
 ## Install
+
 ```bash
 php composer.phar require "gianarb\lean-queue"
 ```
 
-## Contribution
-Try it, you send my your feedback and help me with PRs.
+## Contribute
+Try it and open issues or pull requests! ;)
+
 ```shell
 vendor/bin/phpspec run
 ```
