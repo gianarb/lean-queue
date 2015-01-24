@@ -21,7 +21,7 @@ interface AdapterInterface
 
     /**
      * Delete Message
-     * @return
+     * @return boolean
      */
-    public function deleteMessage($recepit, $queueName);
+    public function delete($recepit, $queueName);
 }

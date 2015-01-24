@@ -51,9 +51,9 @@ class Queue
         return $this->getAdapter()->receive($this->getName());
     }
 
-    public function deleteMessage($receipt)
+    public function delete($receipt)
     {
-        return $this->getAdapter()->deleteMessage($receipt, $this->getName());
+        return $this->getAdapter()->delete($receipt, $this->getName());
     }
 
 }

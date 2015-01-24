@@ -22,7 +22,7 @@ $queue->send("{'example': '2121'}");
 <?php
 $queue = new \GianArb\LeanQueue\Queue("https://sqs.eu-west-1.amazonaws.com/xxxxx/test-php");
 $queue->setAdapter(new \GianArb\LeanQueue\Adapter\AwsAdapter($client));
-list($message, $receipt) = $queue->receive();
+list($receipt, $message) = $queue->receive();
 
 $queue->deleteMessage($receipt);
 ```

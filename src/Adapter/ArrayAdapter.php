@@ -1,10 +1,17 @@
 <?php
-
 namespace GianArb\LeanQueue\Adapter;
+
+use OutOfBoundsException;
+use InvalidArgumentException;
 
 class ArrayAdapter implements AdapterInterface
 {
-    private $data = [];
+    private $data;
+
+    public function __construct(array $data = [])
+    {
+        $this->data = $data;
+    }
 
     public function send($queue, $message)
     {
@@ -21,17 +28,33 @@ class ArrayAdapter implements AdapterInterface
         return $d['id'];
     }
 
-    public function deleteMessage($receipt, $queue)
-    {
-    }
-
     public function receive($queue)
     {
         if (!array_key_exists($queue, $this->data)) {
-            throw \Exception();
+            throw new OutOfBoundsException("Missing data");
         }
-        $row = $this->data[$queue->getName()][0];
-        return [$row['id'], $row['content']];
+
+        $values = array_values($this->data[$queue]);
+
+        $message = [$values[0]["id"], $values[0]["content"]];
+        $this->data[$queue][] = ["id" => $values[0]["id"], "content" => $values[0]["content"]];
+        array_shift($this->data[$queue]);
+
+        return $message;
+    }
+
+    public function delete($receipt, $queue)
+    {
+        if (array_key_exists($queue, $this->data)) {
+            foreach ($this->data[$queue] as $index => $data) {
+                if ($this->data[$queue][$index]["id"] == $receipt) {
+                    unset($this->data[$queue][$index]);
+                    return true;
+                }
+            }
+        }
+
+        throw new InvalidArgumentException("Missing message with receipt: {$receipt}");
     }
 
     public function getData()
