@@ -26,7 +26,7 @@ class AwsAdapter implements AdapterInterface
             "QueueUrl" => $queueName
         ]);
 
-        return [$response["Messages"][0]["Body"], $response["Messages"][0]["ReceiptHandle"]];
+        return [$response["Messages"][0]["ReceiptHandle"], $response["Messages"][0]["Body"]];
     }
 
     public function delete($receipt, $queueName)
