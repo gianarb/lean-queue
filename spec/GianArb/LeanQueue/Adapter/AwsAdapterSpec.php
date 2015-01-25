@@ -69,7 +69,7 @@ class AwsAdapterSpec extends ObjectBehavior
             "ReceiptHandle" => "sehrh"
         ])->willReturn($responseMock);
 
-        $this->deleteMessage("sehrh", "queue")->shouldBe(true);
+        $this->delete("sehrh", "queue")->shouldBe(true);
     }
 
 }

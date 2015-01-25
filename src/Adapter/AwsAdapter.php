@@ -29,7 +29,7 @@ class AwsAdapter implements AdapterInterface
         return [$response["Messages"][0]["Body"], $response["Messages"][0]["ReceiptHandle"]];
     }
 
-    public function deleteMessage($receipt, $queueName)
+    public function delete($receipt, $queueName)
     {
         $response = $this->sqsClient->deleteMessage([
             "QueueUrl" => $queueName,
