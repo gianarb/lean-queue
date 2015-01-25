@@ -30,8 +30,8 @@ class ArrayAdapter implements AdapterInterface
 
     public function receive($queue)
     {
-        if (!array_key_exists($queue, $this->data)) {
-            throw new OutOfBoundsException("Missing data");
+        if ($this->missingOrEmptyQueue($queue)) {
+            return [null, null];
         }
 
         $value = array_shift($this->data[$queue]);
@@ -40,6 +40,15 @@ class ArrayAdapter implements AdapterInterface
         $this->data[$queue][] = ["id" => $value["id"], "content" => $value["content"]];
 
         return $message;
+    }
+
+    private function missingOrEmptyQueue($queue)
+    {
+        if (!array_key_exists($queue, $this->data)) {
+            return true;
+        }
+
+        return false;
     }
 
     public function delete($receipt, $queue)

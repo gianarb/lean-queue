@@ -53,9 +53,18 @@ class ArrayAdapterSpec extends ObjectBehavior
         $this->getData()["queue-name"]->shouldHaveCount(1);
     }
 
+    function it_should_notify_that_the_queue_doesnt_exists()
+    {
+        $this->receive("test")->shouldBe([null, null]);
+    }
+
     function it_should_notify_that_the_queue_is_empty()
     {
-        $this->shouldThrow("OutOfBoundsException")->during("receive", ["test"]);
+        $this->beConstructedWith([
+            "queue-name" => []
+        ]);
+
+        $this->receive("queue-name")->shouldBe([null, null]);
     }
 
     function it_should_notify_that_the_message_is_not_deleted()
