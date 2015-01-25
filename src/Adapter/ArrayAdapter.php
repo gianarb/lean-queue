@@ -34,11 +34,10 @@ class ArrayAdapter implements AdapterInterface
             throw new OutOfBoundsException("Missing data");
         }
 
-        $values = array_values($this->data[$queue]);
+        $value = array_shift($this->data[$queue]);
 
-        $message = [$values[0]["id"], $values[0]["content"]];
-        $this->data[$queue][] = ["id" => $values[0]["id"], "content" => $values[0]["content"]];
-        array_shift($this->data[$queue]);
+        $message = [$value["id"], $value["content"]];
+        $this->data[$queue][] = ["id" => $value["id"], "content" => $value["content"]];
 
         return $message;
     }
