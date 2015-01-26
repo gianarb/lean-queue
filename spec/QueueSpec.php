@@ -41,9 +41,9 @@ class QueueSpec extends ObjectBehavior
 
     function it_calls_deleteMessage_from_adapter(\GianArb\LeanQueue\Adapter\AdapterInterface $adapter)
     {
-        $adapter->deleteMessage("ewernerne", "queue-name")->shouldBeCalled();
+        $adapter->delete("ewernerne", "queue-name")->shouldBeCalled();
 
         $this->setAdapter($adapter);
-        $this->deleteMessage("ewernerne");
+        $this->delete("ewernerne");
     }
 }
