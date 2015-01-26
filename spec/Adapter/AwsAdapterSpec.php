@@ -46,14 +46,14 @@ class AwsAdapterSpec extends ObjectBehavior
         $client->sendMessage([
             "QueueUrl" => "queue",
             "MessageBody" => "{}",
-        ])->willReturn(unserialize(file_get_contents(__DIR__."/../../../../resources/sendMessage")));
+        ])->willReturn(unserialize(file_get_contents(__DIR__."/../../resources/sendMessage")));
 
         $this->send("queue", "{}")->shouldBe("d5bc4a49-c0b3-47fc-aca8-42940784b150");
     }
 
     function it_receive_message_and_return_the_receipt_and_message(\Aws\Sqs\SqsClient $client)
     {
-        $responseMock = unserialize(file_get_contents(__DIR__."/../../../../resources/receiveMessage"));
+        $responseMock = unserialize(file_get_contents(__DIR__."/../../resources/receiveMessage"));
         $client->receiveMessage([
             "QueueUrl" => "queue",
         ])->willReturn($responseMock);
@@ -63,7 +63,7 @@ class AwsAdapterSpec extends ObjectBehavior
 
     function it_deleteMessage_and_return_true_how_success(\Aws\Sqs\SqsClient $client)
     {
-        $responseMock = unserialize(file_get_contents(__DIR__."/../../../../resources/deleteMessage"));
+        $responseMock = unserialize(file_get_contents(__DIR__."/../../resources/deleteMessage"));
         $client->deleteMessage([
             "QueueUrl" => "queue",
             "ReceiptHandle" => "sehrh"
