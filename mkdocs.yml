@@ -1,0 +1,13 @@
+site_name: LeanQueue
+site_description: Project documentation with leanQueue.
+
+repo_url: https://github.com/gianarb/lean-queue/
+
+pages:
+- ['index.md', 'Home']
+- ['getting-started.md', 'Getting Started']
+- ['contribute.md', 'Contribute']
+- ['license.md', 'License']
+
+copyright: Copyright &copy; 2015, <a href="https://github.com/gianarb">Gianluca Arbezzano</a>.
+google_analytics: ["UA-60029542-1", "http://lean-queue.readthedocs.org/en/stable/"]
