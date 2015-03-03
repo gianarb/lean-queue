@@ -6,6 +6,7 @@ repo_url: https://github.com/gianarb/lean-queue/
 pages:
 - ['index.md', 'Home']
 - ['getting-started.md', 'Getting Started']
+- ['Symfony.md', 'Symfony integration']
 - ['contribute.md', 'Contribute']
 - ['license.md', 'License']
 
