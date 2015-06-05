@@ -1,2 +1,4 @@
 vendor
 tags
+composer.phar
+composer.lock
