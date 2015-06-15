@@ -19,13 +19,13 @@ class ArrayAdapter implements AdapterInterface
             $this->data[$queue] = [];
         }
 
-        $d = array(
+        $data = array(
             'id' => rand(1e6, 10e6),
             'content'    => $message,
         );
 
-        $this->data[$queue][] = $d;
-        return $d['id'];
+        $this->data[$queue][] = $data;
+        return $data['id'];
     }
 
     public function receive($queue)
