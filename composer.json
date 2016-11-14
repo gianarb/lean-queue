@@ -2,7 +2,7 @@
     "name": "gianarb/lean-queue",
     "desciption": "Lean queue syste.. Only send, receive and more easy adapters",
     "require": {
-        "aws/aws-sdk-php": "~2.7"
+        "aws/aws-sdk-php": "~2"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
