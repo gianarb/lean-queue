@@ -26,6 +26,10 @@ class AwsAdapter implements AdapterInterface
             "QueueUrl" => $queueName
         ]);
 
+        if (!is_array($response["Messages"]) || !count($response["Messages"])) {
+            return [null, null];
+        }
+
         return [$response["Messages"][0]["ReceiptHandle"], $response["Messages"][0]["Body"]];
     }
 
